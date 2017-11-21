@@ -8,11 +8,14 @@ function sensorSimulator
     digitSignal = dnaSeq2Digit(DNASeq, K);
     
     % Add noise
-    snr = 30;
-    rawSensor = addNoise(digitSignal, snr);
+    SNR = 20;
+    rawSensor = addNoise(digitSignal, SNR);
     
     % Plot the signal
     t = (1: 1: DNASeqLen);
     plot(t, [digitSignal; rawSensor]);
-    legend('Raw signal',['Raw signal with SNR=' num2str(snr)]);
+    grid on
+    xlabel('State Index');
+    ylabel('Current (pA)');
+    legend('Raw signal',['Raw signal with SNR=' num2str(SNR)]);
 end
