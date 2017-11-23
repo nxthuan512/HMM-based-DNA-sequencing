@@ -24,7 +24,7 @@ function sensorSimulator(SNR)
     legend('Raw signal',['Raw signal with SNR=' num2str(SNR), ' dB']);
     
     % Recheck the SNR
-    snr = snr_check(digitSignal, rawSensor);
+    snr = snrCheck(digitSignal, rawSensor);
     disp(['Recheck SNR value: ', num2str(snr), ' dB']);
     
 end
