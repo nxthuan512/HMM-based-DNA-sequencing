@@ -16,8 +16,15 @@ function sensorSimulator(SNR)
     % Plot the signal
     t = (1: 1: DNASeqLen);
     plot(t, [digitSignal; rawSensor]);
+    %axis([0 100 0 300])
     grid on
     xlabel('State Index');
     ylabel('Current (pA)');
-    legend('Raw signal',['Raw signal with SNR=' num2str(SNR)]);
+
+    legend('Raw signal',['Raw signal with SNR=' num2str(SNR), ' dB']);
+    
+    % Recheck the SNR
+    snr = snr_check(digitSignal, rawSensor);
+    disp(['Recheck SNR value: ', num2str(snr), ' dB']);
+    
 end

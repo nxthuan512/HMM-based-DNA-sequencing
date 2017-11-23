@@ -5,7 +5,7 @@
 
 function y = addNoise(x, snr)
     % Built-in function
-    % rawSensor = awgn(tinyDigitSignal, snr, 'measured');
+    % y = awgn(x, snr, 'measured');
   
     rng('default'); %set the random generator seed to default (for comparison only)
     L = length(x);
