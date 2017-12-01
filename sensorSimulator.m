@@ -9,7 +9,9 @@ function [dnaSeq, digitSignalNoise] = sensorSimulator(SNR)
     % Generate a random DNA sequence
     % DNASeq = generateDNASeq(dnaSeqLen);
     
-    dnaSeq = 'CATCCCTCACCTGAAGTGTCCAGCAAATACACCAAGGGTGACGCAGGACAAGCATGAGCCATTCATACTGCTGCAACCAGAGAGAGGGAGCAGGAAAATA';
+    fo = fopen('dnaSequenceSample', 'r');
+    dnaSeq = fgets(fo);
+    fclose(fo);
     
     % Convert DNA to digital signal
     K = 3; % K-mer
@@ -20,9 +22,8 @@ function [dnaSeq, digitSignalNoise] = sensorSimulator(SNR)
     digitSignalNoise = noiseAdd(digitSignal, SNR);
     
     % Plot the signal
-    t = (1: 1: dnaSeqLen);
-    plot(t, [digitSignal; digitSignalNoise]);
-    %axis([0 100 0 300])
+%     t = (1: 1: dnaSeqLen);
+%     plot(t, [digitSignal; digitSignalNoise]);
 %     grid on                       % --- Simulation only ---
 %     xlabel('State Index');        % --- Simulation only ---
 %     ylabel('Current (pA)');       % --- Simulation only ---
