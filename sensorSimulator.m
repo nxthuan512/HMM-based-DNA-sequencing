@@ -1,23 +1,36 @@
-function sensorSimulator(SNR)
+% =========================================================================
+% Function:
+%   Create a simulated sensor signal with a given SNR value
+%       Input:  SNR value and DNA sequence length
+%       Output: (Signal + Noise) signal 
+% =========================================================================
+
+function [dnaSeq, digitSignalNoise] = sensorSimulator(SNR)
     % Generate a random DNA sequence
-    % DNASeqLen = 100;    % Number of bases
-    % DNASeq = generateDNASeq(DNASeqLen);
+    % DNASeq = generateDNASeq(dnaSeqLen);
     
-    DNASeq = 'CATCCCTCACCTGAAGTGTCCAGCAAATACACCAAGGGTGACGCAGGACAAGCATGAGCCATTCATACTGCTGCAACCAGAGAGAGGGAGCAGGAAAAT';
-    DNASeqLen = length(DNASeq);
+    fo = fopen('dnaSequenceSample', 'r');
+    dnaSeq = fgets(fo);
+    fclose(fo);
     
     % Convert DNA to digital signal
     K = 3; % K-mer
-    digitSignal = dnaSeq2Digit(DNASeq, K);
+    digitSignal = dnaSeq2Digit(dnaSeq);
+    dnaSeqLen = length(digitSignal);
     
     % Add noise
-    rawSensor = addNoise(digitSignal, SNR);
+    digitSignalNoise = noiseAdd(digitSignal, SNR);
     
     % Plot the signal
-    t = (1: 1: DNASeqLen);
-    plot(t, [digitSignal; rawSensor]);
-    grid on
-    xlabel('State Index');
-    ylabel('Current (pA)');
-    legend('Raw signal',['Raw signal with SNR=' num2str(SNR)]);
+%     t = (1: 1: dnaSeqLen);
+%     plot(t, [digitSignal; digitSignalNoise]);
+%     grid on                       % --- Simulation only ---
+%     xlabel('State Index');        % --- Simulation only ---
+%     ylabel('Current (pA)');       % --- Simulation only ---
+%     legend('Raw signal',['Raw signal with SNR=' num2str(SNR), ' dB']);    % --- Simulation only ---
+    
+    % Recheck the SNR
+    % snr = snrCheck(digitSignal, digitSignalNoise);        % --- Simulation only ---
+    % disp(['Recheck SNR value: ', num2str(snr), ' dB']);   % --- Simulation only ---
+    
 end

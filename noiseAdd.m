@@ -1,11 +1,13 @@
+% =========================================================================
 % Function:
 %   y = addNoise(x, snr) adds AWGN noise vector to signal 'x' to generate a
 %   resulting signal vector y of specified SNR in dB.
 %   ref: https://www.gaussianwaves.com/2015/06/how-to-generate-awgn-noise-in-matlaboctave-without-using-in-built-awgn-function/
+% =========================================================================
 
-function y = addNoise(x, snr)
+function y = noiseAdd(x, snr)
     % Built-in function
-    % rawSensor = awgn(tinyDigitSignal, snr, 'measured');
+    % y = awgn(x, snr, 'measured');
   
     rng('default'); %set the random generator seed to default (for comparison only)
     L = length(x);
